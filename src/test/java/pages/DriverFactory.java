@@ -16,6 +16,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -61,7 +62,7 @@ public static WebDriver driver;
 		
 	}
 	
-	@AfterClass
+	//@AfterClass
 	public void tearDown() {
 		if(getDriverInstance()!=null) {
 			System.out.println("Closing chrome browser");
@@ -109,9 +110,15 @@ public static WebDriver driver;
 
 	}
 
+	public static void navigateUrl(String url) throws Exception {
 	
+	getDriverInstance().navigate().to("http://www.google.com");
+	//String strPageTitle = getDriverInstance().getTitle();
+//	System.out.println("Page title: - "+strPageTitle);
+//	Assert.assertTrue(strPageTitle.equalsIgnoreCase("Google"), "Page title doesn't match");
+	takeSnapShot();
 	
-	
+	}
 	
 
 //public static WebDriver driver(Class<?> clazz) {
