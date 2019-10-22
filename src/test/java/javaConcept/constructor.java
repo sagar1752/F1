@@ -6,6 +6,7 @@ import static org.testng.Assert.assertEquals;
 
 public class constructor {
 
+	 
 	String name = "sagar";
 
 	public  void Add() {

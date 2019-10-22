@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
+import java.util.concurrent.TimeUnit;
 
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.By;
@@ -16,6 +17,8 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.testng.Assert;
+import org.testng.ITestResult;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -61,13 +64,46 @@ public static WebDriver driver;
 		
 	}
 	
-	@AfterClass
+	//@AfterClass
 	public void tearDown() {
 		if(getDriverInstance()!=null) {
 			System.out.println("Closing chrome browser");
 			getDriverInstance().quit();
 		}
 	}
+		
+		public void afterMethod(ITestResult result)
+		{
+		    try
+		 {
+		    if(result.getStatus() == ITestResult.SUCCESS)
+		    {
+
+		        //Do something here
+		        System.out.println("passed **********");
+		    }
+
+		    else if(result.getStatus() == ITestResult.FAILURE)
+		    {
+		         //Do something here
+		        System.out.println("Failed ***********");
+
+		    }
+
+		     else if(result.getStatus() == ITestResult.SKIP ){
+
+		        System.out.println("Skiped***********");
+
+		    }
+		}
+		   catch(Exception e)
+		   {
+		     e.printStackTrace();
+		   }
+
+		}
+		
+	
 	
 	
 	public  static void loadPropertiesFile () throws IOException {
@@ -109,11 +145,20 @@ public static WebDriver driver;
 
 	}
 
+	public static void navigateUrl(String url) throws Exception {
 	
+	getDriverInstance().navigate().to("http://www.google.com");
+	//String strPageTitle = getDriverInstance().getTitle();
+//	System.out.println("Page title: - "+strPageTitle);
+//	Assert.assertTrue(strPageTitle.equalsIgnoreCase("Google"), "Page title doesn't match");
+	takeSnapShot();
 	
+	}
+	public static void implicitWait(int wait) {
+	driver.manage().timeouts().implicitlyWait(wait, TimeUnit.SECONDS);
 	
+	}
 	
-
 //public static WebDriver driver(Class<?> clazz) {
 //	if (DriverFactory.class.isAssignableFrom(clazz)) {
 //		return (WebDriver) threadLocalDriver.get();

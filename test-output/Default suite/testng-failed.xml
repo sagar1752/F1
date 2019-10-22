@@ -3,13 +3,12 @@
 <suite guice-stage="DEVELOPMENT" name="Failed suite [Default suite]">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="TestCases.TC1_VerifyPageTitle">
+      <class name="TestCases.hyperlink">
         <methods>
-          <include name="testGooglePageTitleInIEBrowser"/>
+          <include name="Hyperlink"/>
           <include name="setUp"/>
-          <include name="tearDown"/>
         </methods>
-      </class> <!-- TestCases.TC1_VerifyPageTitle -->
+      </class> <!-- TestCases.hyperlink -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->
